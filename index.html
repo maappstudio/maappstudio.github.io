@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arrowtune: Arrow Puzzle Game</title>
+  <meta name="description" content="Tap arrows, bounce off mirrors, clear the board and hear your tune. A calm, clever arrow puzzle for Android.">
+  <link rel="icon" href="icon.png">
+  <meta property="og:title" content="Arrowtune: Arrow Puzzle Game">
+  <meta property="og:description" content="Tap arrows, bounce off mirrors, clear the board and hear your tune!">
+  <meta property="og:image" content="feature.png">
+  <style>
+    :root { --paper: #F1EFE8; --card: #FFFDF8; --ink: #16181C; --muted: #6f6d66; --teal: #0E7C66; --line: #DEDACF; }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #121518; --card: #1D2125; --ink: #ECEAE3; --muted: #9C9A92; --teal: #2BBF98; --line: #2C3136; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 16px 56px; }
+    header { display: flex; align-items: center; gap: 18px; }
+    header img { width: 88px; height: 88px; border-radius: 22px; box-shadow: 0 10px 28px rgba(27, 39, 133, .25); }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px, 6vw, 40px); line-height: 1.1; margin: 0; }
+    .tag { color: var(--muted); margin: 4px 0 0; }
+    .hero { width: 100%; border-radius: 22px; margin: 28px 0 8px; display: block; box-shadow: 0 14px 34px rgba(0,0,0,.12); }
+    .cta { display: inline-block; margin: 20px 0 6px; padding: 14px 26px; border-radius: 18px; background: var(--teal); color: #fff; font-weight: 800; text-decoration: none; box-shadow: 0 10px 24px rgba(14,124,102,.3); }
+    .soon { color: var(--muted); font-size: 14px; margin: 0; }
+    h2 { font-size: 20px; margin: 36px 0 12px; }
+    ul.features { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    ul.features li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+    ul.features b { display: block; }
+    ol { padding-left: 22px; }
+    footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    footer a { color: var(--teal); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="icon.png" alt="Arrowtune icon">
+      <div>
+        <h1>Arrowtune</h1>
+        <p class="tag">Arrow puzzle game for Android</p>
+      </div>
+    </header>
+
+    <img class="hero" src="feature.png" alt="Arrowtune - tap the arrows out and hear your tune">
+
+    <p>Tap an arrow. If its way is clear, it flies off the board - and plays a note. Clear every arrow
+      and you have played a tune. Arrowtune is a calm, clever puzzle about order: which arrow can go first?</p>
+
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.arrowtune.puzzle">Get it on Google Play</a>
+    <p class="soon">Coming soon to Google Play.</p>
+
+    <h2>Why you will love it</h2>
+    <ul class="features">
+      <li><b>Mirrors</b>Arrows bounce round corners - a fresh twist on the arrow puzzle.</li>
+      <li><b>Every arrow plays a note</b>Clearing a board plays a real melody.</li>
+      <li><b>A friend every level</b>A cute moving creature pops out when you win. Collect them all.</li>
+      <li><b>Daily challenge</b>A new puzzle every day, with a calendar and a streak.</li>
+      <li><b>Endless levels</b>Quick and easy at first, then big, beautiful shaped boards.</li>
+      <li><b>Play your way</b>Night theme, arrow styles, colour-blind mode, large arrows, left-hand layout.</li>
+    </ul>
+
+    <h2>How to play</h2>
+    <ol>
+      <li>Tap an arrow whose path to the edge is clear - it flies away.</li>
+      <li>A blocked arrow turns red and costs a heart.</li>
+      <li>Clear every arrow to win. No mistakes = three stars.</li>
+    </ol>
+
+    <footer>
+      <span>&copy; 2026 MA App Studio</span>
+      <a href="privacy-policy.html">Privacy policy</a>
+      <a href="mailto:maappstudio@gmail.com">maappstudio@gmail.com</a>
+    </footer>
+  </main>
+</body>
+</html>
