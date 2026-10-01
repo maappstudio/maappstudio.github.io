@@ -29,6 +29,8 @@
     ul.features li { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
     ul.features b { display: block; }
     ol { padding-left: 22px; }
+    .shots { display: flex; gap: 12px; overflow-x: auto; margin: 28px -16px 0; padding: 4px 16px 10px; scroll-snap-type: x mandatory; }
+    .shots img { width: 220px; flex: none; border-radius: 18px; scroll-snap-align: start; box-shadow: 0 10px 24px rgba(0,0,0,.14); }
     footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
     footer a { color: var(--teal); }
   </style>
@@ -50,6 +52,12 @@
 
     <a class="cta" href="https://play.google.com/store/apps/details?id=com.arrowtune.puzzle">Get it on Google Play</a>
     <p class="soon">Coming soon to Google Play.</p>
+
+    <div class="shots">
+      <img src="screens/01_tap_the_arrows_out.jpg" alt="Tap the arrows out" loading="lazy">
+      <img src="screens/03_win_a_new_friend.jpg" alt="Win a new friend" loading="lazy">
+      <img src="screens/05_a_new_puzzle_every_day.jpg" alt="A new puzzle every day" loading="lazy">
+    </div>
 
     <h2>Why you will love it</h2>
     <ul class="features">
