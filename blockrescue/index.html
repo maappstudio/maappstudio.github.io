@@ -3,47 +3,174 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Block Rescue: Rising Water</title>
+  <title>Block Rescue: Rising Water - save the animals!</title>
+  <meta name="description" content="A colourful block puzzle with a heart: clear lines, break the cages and save the animals before the water rises. 120 levels, 6 worlds, free on Google Play.">
+  <meta property="og:title" content="Block Rescue: Rising Water">
+  <meta property="og:description" content="Clear lines, break the cages and save the animals before the water rises!">
+  <meta property="og:image" content="https://maappstudio.github.io/blockrescue/shots/banner.jpg">
+  <meta name="theme-color" content="#1250B8">
   <link rel="icon" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: linear-gradient(#14408A, #0A1A44) fixed; color: #EAF2FF; font: 16px/1.6 system-ui, sans-serif; min-height: 100vh; }
-    main { max-width: 680px; margin: 0 auto; padding: 32px 20px 48px; }
-    h1 { font-size: 30px; margin: 0 0 2px; color: #FFD34D; }
-    h2 { font-size: 18px; margin: 28px 0 6px; color: #FFFFFF; }
-    p { margin: 0; color: #C9D8F5; }
-    a { color: #7FD3FF; }
-    header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
-    header img { width: 64px; height: 64px; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
-    .card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 6px 22px 24px; margin-top: 20px; }
-    .muted { color: #93A8D2; font-size: 14px; margin-top: 24px; }
-    .links a { display: inline-block; margin: 14px 18px 0 0; }
-    .play { display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 14px; background: #FFC531; color: #3A2600; font-weight: 700; text-decoration: none; }
+    :root { --ink:#14213D; --gold:#FFD84A; --navy:#1D4690; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Fredoka, system-ui, sans-serif; color:#fff; background:#0E2A6B; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    header { position: relative; overflow: hidden; text-align: center; padding: 56px 0 80px;
+      background: linear-gradient(#29B6F6, #1250B8); }
+    header::after { content:""; position:absolute; left:-5%; right:-5%; bottom:-2px; height:60px;
+      background:#0E2A6B; border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+    .blocks i { position:absolute; bottom:-60px; width:46px; height:46px; border-radius:9px; opacity:.18;
+      background:#fff; animation: rise 14s linear infinite; }
+    @keyframes rise { from { transform: translateY(120px) rotate(0); } to { transform: translateY(-640px) rotate(200deg); } }
+    @media (prefers-reduced-motion: reduce) { .blocks i { animation: none; } }
+    header .wrap { position: relative; z-index: 1; }
+    .icon { width:128px; height:128px; border-radius:30px; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+    h1 { margin: 18px 0 0; font-size: clamp(46px, 9vw, 84px); line-height: 1; color: var(--gold);
+      -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; text-shadow: 0 8px 0 rgba(0,0,0,.25); }
+    .sub { display:inline-block; margin-top:14px; padding:4px 18px; border-radius:14px; background:var(--navy);
+      border:2px solid rgba(255,255,255,.35); letter-spacing:6px; font-weight:600; }
+    .tag { font-size: clamp(19px, 3.2vw, 24px); font-weight:600; margin: 22px auto 0; max-width: 620px; }
+    .play { display:inline-flex; align-items:center; gap:12px; margin-top:28px; padding:12px 26px; color:#fff;
+      background:#000; border:2px solid #fff; border-radius:16px; text-decoration:none;
+      box-shadow: 0 8px 0 rgba(0,0,0,.3); transition: transform .1s; }
+    .play:hover { transform: translateY(-2px); }
+    .play svg { width:34px; height:34px; }
+    .play span { text-align:left; line-height:1.05; }
+    .play small { display:block; font-size:12px; letter-spacing:1px; }
+    .play b { font-size:24px; }
+    .chips { margin-top:22px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+    .chips span { background: rgba(255,255,255,.18); padding:6px 14px; border-radius:20px; font-weight:600; }
+    section { padding: 56px 0 28px; }
+    h2 { text-align:center; font-size: clamp(30px, 5vw, 42px); margin: 0 0 26px; color: var(--gold);
+      -webkit-text-stroke: 7px var(--ink); paint-order: stroke fill; }
+    .gallery { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding: 8px 20px 20px; }
+    .gallery img { flex: 0 0 auto; width:250px; height:auto; border-radius:22px; scroll-snap-align:center;
+      border:4px solid var(--ink); box-shadow: 0 12px 24px rgba(0,0,0,.35); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+    .card { background: linear-gradient(#2453A6, var(--navy)); border:2px solid rgba(255,255,255,.25);
+      border-radius:20px; padding:20px; box-shadow: 0 5px 0 #0B2152; }
+    .card .ic { font-size:34px; }
+    .card h3 { margin: 8px 0 6px; font-size:21px; }
+    .card p { margin:0; color:#DDEBFF; font-weight:500; line-height:1.45; }
+    .worlds { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:14px; }
+    .world { border-radius:20px; padding:22px 12px; text-align:center; border:3px solid rgba(255,255,255,.4);
+      box-shadow: 0 5px 0 rgba(0,0,0,.25); }
+    .world span { font-size:40px; display:block; }
+    .world b { display:block; font-size:22px; margin-top:6px; }
+    .world small { font-weight:600; opacity:.9; }
+    .steps { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:22px; counter-reset:s; }
+    .step { background: rgba(255,255,255,.08); border-radius:20px; padding:26px 22px 22px; position:relative; }
+    .step::before { counter-increment:s; content:counter(s); position:absolute; top:-16px; left:18px; width:38px; height:38px;
+      border-radius:50%; background:#3DDC84; color:var(--ink); font-weight:700; display:grid; place-items:center; font-size:20px; }
+    .step p { margin:0; font-size:18px; font-weight:500; }
+    details { background: linear-gradient(#2453A6, var(--navy)); border-radius:16px; margin-bottom:12px;
+      border:2px solid rgba(255,255,255,.22); }
+    summary { cursor:pointer; padding:16px 20px; font-size:19px; font-weight:600; }
+    details p { margin:0; padding:0 20px 18px; color:#DDEBFF; line-height:1.5; }
+    .cta { text-align:center; padding: 56px 20px; }
+    footer { background:#081B47; padding:30px 20px; text-align:center; color:#A9C1F0; font-weight:500; }
+    footer nav { display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:12px; }
+    footer a { color:#fff; text-decoration:none; font-weight:600; }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <img src="icon.png" alt="">
-      <div>
-        <h1>Block Rescue</h1>
-        <p>Rising Water &middot; MA App Studio</p>
-      </div>
-    </header>
-    <div class="card">
-      <h2>Save the animals before the water rises!</h2>
-      <p>Place colourful blocks, clear lines to open the cages, and get every
-      bunny, puppy and kitten to safety before the flood reaches them. Calm
-      puzzles, 120 rescue levels in 6 worlds, an endless Classic mode, a new Daily Rescue every day, a Lucky
-      Spin, Daily Missions, an Animal Album to fill, and a home
-      island that grows with every animal you save.</p>
-      <a class="play" href="https://play.google.com/store/apps/details?id=com.maappstudio.blockrescue">Get it on Google Play</a>
+  <header>
+    <div class="blocks" aria-hidden="true">
+      <i style="left:6%"></i>
+      <i style="left:22%;animation-delay:-5s;width:30px;height:30px"></i>
+      <i style="left:78%;animation-delay:-2s"></i>
+      <i style="left:90%;animation-delay:-9s;width:34px;height:34px"></i>
+      <i style="left:60%;animation-delay:-11s;width:26px;height:26px"></i>
     </div>
-    <p class="links">
+    <div class="wrap">
+      <img class="icon" src="icon.png" alt="Block Rescue icon">
+      <h1>Block Rescue</h1>
+      <div class="sub">RISING WATER</div>
+      <p class="tag">Clear lines, break the cages and save the animals before the water rises!</p>
+      <a class="play" href="https://play.google.com/store/apps/details?id=com.maappstudio.blockrescue">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00D7FE" d="M48 32l232 224L48 480c-10-5-16-15-16-28V60c0-13 6-23 16-28z"/><path fill="#FFCE00" d="M372 168l-92 88 92 88 76-44c22-13 22-45 0-58z"/><path fill="#FF3A44" d="M280 256L48 480c7 4 17 4 26-1l298-135z"/><path fill="#00F076" d="M48 32c7-4 17-4 26 1l298 135-92 88z"/></svg>
+        <span><small>GET IT ON</small><b>Google Play</b></span>
+      </a>
+      <div class="chips"><span>Free</span><span>Offline</span><span>120 levels</span><span>6 worlds</span><span>No account</span></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>See it in action</h2>
+    <div class="gallery">
+      <img src="shots/01_save_the_animals.jpg" alt="Save the animals before the water rises" loading="lazy" width="270" height="480">
+      <img src="shots/02_boss_levels.jpg" alt="Stormy Boss levels" loading="lazy" width="270" height="480">
+      <img src="shots/03_120_levels.jpg" alt="120 levels in 6 worlds" loading="lazy" width="270" height="480">
+      <img src="shots/04_adventure_or_classic.jpg" alt="Adventure or Classic" loading="lazy" width="270" height="480">
+      <img src="shots/05_animal_island.jpg" alt="Build your Animal Island" loading="lazy" width="270" height="480">
+      <img src="shots/06_animal_friends.jpg" alt="18 animal friends" loading="lazy" width="270" height="480">
+      <img src="shots/07_lucky_spin.jpg" alt="Lucky Spin every day" loading="lazy" width="270" height="480">
+      <img src="shots/08_daily_missions.jpg" alt="Daily Missions" loading="lazy" width="270" height="480">
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Why you'll love it</h2>
+    <div class="grid">
+      <div class="card"><div class="ic">🐰</div><h3>Save cute animals</h3><p>Clear lines through the cages to set bunnies, puppies, lions and more free.</p></div>
+      <div class="card"><div class="ic">🌊</div><h3>Beat the rising water</h3><p>Every few moves the water climbs - plan ahead and push it back.</p></div>
+      <div class="card"><div class="ic">⚡</div><h3>Stormy Boss levels</h3><p>Every 10th level: a golden board, a storm and five animals to save.</p></div>
+      <div class="card"><div class="ic">🎨</div><h3>Colour cages</h3><p>Finish the line with the right colour to open them.</p></div>
+      <div class="card"><div class="ic">🏝️</div><h3>Animal Island</h3><p>Every animal you save moves to your island - decorate it your way.</p></div>
+      <div class="card"><div class="ic">🎡</div><h3>Lucky Spin &amp; Missions</h3><p>A free spin, three missions and a gift every day.</p></div>
+      <div class="card"><div class="ic">♾️</div><h3>Endless Classic</h3><p>A relaxing block puzzle with no water, just high scores.</p></div>
+      <div class="card"><div class="ic">📴</div><h3>Play offline</h3><p>No account, no internet needed. Small and smooth on any phone.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Six worlds to explore</h2>
+    <div class="worlds">
+      <div class="world" style="background:linear-gradient(#29B6F6,#1250B8)"><span>🏖️</span><b>Beach</b><small>Levels 1-20</small></div>
+      <div class="world" style="background:linear-gradient(#5CC46A,#1B6B3A)"><span>🌲</span><b>Forest</b><small>Levels 21-40</small></div>
+      <div class="world" style="background:linear-gradient(#FFB347,#D9541E)"><span>🌻</span><b>Farm</b><small>Levels 41-60</small></div>
+      <div class="world" style="background:linear-gradient(#8FD3FF,#3D54C4)"><span>❄️</span><b>Snow Hill</b><small>Levels 61-80</small></div>
+      <div class="world" style="background:linear-gradient(#2CC5A0,#0B6150)"><span>🌴</span><b>Jungle</b><small>Levels 81-100</small></div>
+      <div class="world" style="background:linear-gradient(#9C7CF0,#2E3A9E)"><span>🦢</span><b>Lake</b><small>Levels 101-120</small></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>How to play</h2>
+    <div class="steps">
+      <div class="step"><p>Drag a block onto the board.</p></div>
+      <div class="step"><p>Fill a whole row or column to clear it.</p></div>
+      <div class="step"><p>Clear the lines through a cage to free the animal - before the water reaches it!</p></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Questions</h2>
+    <details><summary>Is Block Rescue free?</summary><p>Yes. The game is free to play and shows ads. There is nothing to buy.</p></details>
+    <details><summary>Do I need the internet?</summary><p>No. You can play every level offline. Ads only show when you are online.</p></details>
+    <details><summary>Does it collect my data?</summary><p>The game keeps your progress only on your phone. Google AdMob uses some device data for ads - see the privacy policy.</p></details>
+    <details><summary>Will there be more levels?</summary><p>Yes! New worlds with new levels come with updates.</p></details>
+    <details><summary>Who is it for?</summary><p>Block Rescue is made for players aged 13 and over.</p></details>
+  </section>
+
+  <div class="cta">
+    <h2>The animals are waiting!</h2>
+    <a class="play" href="https://play.google.com/store/apps/details?id=com.maappstudio.blockrescue">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="#00D7FE" d="M48 32l232 224L48 480c-10-5-16-15-16-28V60c0-13 6-23 16-28z"/><path fill="#FFCE00" d="M372 168l-92 88 92 88 76-44c22-13 22-45 0-58z"/><path fill="#FF3A44" d="M280 256L48 480c7 4 17 4 26-1l298-135z"/><path fill="#00F076" d="M48 32c7-4 17-4 26 1l298 135-92 88z"/></svg>
+        <span><small>GET IT ON</small><b>Google Play</b></span>
+      </a>
+  </div>
+
+  <footer>
+    <nav>
       <a href="privacy-policy.html">Privacy policy</a>
       <a href="terms.html">Terms of use</a>
       <a href="mailto:maappstudio.dev@gmail.com">Contact</a>
-    </p>
-    <p class="muted">&copy; 2026 MA App Studio</p>
-  </main>
+    </nav>
+    &copy; 2026 MA App Studio
+  </footer>
 </body>
 </html>
